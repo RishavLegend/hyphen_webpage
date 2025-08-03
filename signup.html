@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPHEN - Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://plus.unsplash.com/premium_photo-1685287730190-cddbced4834f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+            background-size: cover;
+            animation: backgroundZoom 20s ease-in-out infinite;
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Bradley Hand ITC', sans-serif;
+        }
+
+        .logo span {
+            color: #3498db;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        .form-group input.shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .signup-btn.active {
+            animation: pulse 1.5s infinite;
+        }
+
+        .signup-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #7f8c8d;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: #6c757d;
+            transform: translateY(-3px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+
+        .login-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, color 0.3s;
+        }
+
+        .login-link a:hover {
+            color: #2980b9;
+            transform: scale(1.1) translateY(-2px);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1001;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .toast {
+                bottom: 70px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes backgroundZoom {
+            0% { background-size: 150%; }
+            50% { background-size: 160%; }
+            100% { background-size: 150%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="logo">
+            <h1>HYPHEN<span>-</span></h1>
+        </div>
+        <form id="signupForm" onsubmit="return validateForm(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required oninput="updateSignupButtonState()">
+                <div id="emailError" class="error">Please enter a valid email</div>
+                <div id="emailExistsError" class="error">This email is already registered</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required oninput="updateSignupButtonState()">
+                <div id="passwordError" class="error">Password must be at least 6 characters</div>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <div class="login-link">
+            Already have an account? <a href="index.html">Log in</a>
+        </div>
+    </div>
+    <button class="back-btn" onclick="goToLogin()">Back to Login</button>
+
+    <script>
+        function showToast(message) {
+            let toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            toast.style.display = 'block';
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function updateSignupButtonState() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const signupButton = document.querySelector('.signup-btn');
+            if (emailInput.value.trim() && passwordInput.value.trim()) {
+                signupButton.classList.add('active');
+            } else {
+                signupButton.classList.remove('active');
+            }
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const emailError = document.getElementById('emailError');
+            const emailExistsError = document.getElementById('emailExistsError');
+            const passwordError = document.getElementById('passwordError');
+            
+            let isValid = true;
+
+            // Reset shake animations
+            emailInput.classList.remove('shake');
+            passwordInput.classList.remove('shake');
+
+            // Email format validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showToast('Please enter a valid email');
+                emailInput.classList.add('shake');
+                setTimeout(() => emailInput.classList.remove('shake'), 300);
+                isValid = false;
+            }
+
+            // Check if email is already registered
+            const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+            const predefinedCredentials = [
+                { email: "user1@example.com", password: "password123" },
+                { email: "user2@example.com", password: "secure456" },
+                { email: "test@example.com", password: "test789" }
+            ];
+            const allUsers = [...predefinedCredentials, ...storedUsers];
+            if (allUsers.some(user => user.email === email)) {
+                showToast('This email is already registered');
+                emailInput.classList.add('shake');
+                setTimeout(() => emailInput.classList.remove('shake'), 300);
+                isValid = false;
+            }
+
+            // Password length validation
+            if (password.length < 6) {
+                showToast('Password must be at least 6 characters');
+                passwordInput.classList.add('shake');
+                setTimeout(() => passwordInput.classList.remove('shake'), 300);
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Store new user in localStorage
+                storedUsers.push({ email, password });
+                localStorage.setItem('users', JSON.stringify(storedUsers));
+                showToast('Sign up successful! Please log in.');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000); // Delay redirect for toast visibility
+            }
+
+            return isValid;
+        }
+
+        function goToLogin() {
+            window.location.href = 'index.html';
+        }
+
+        window.onload = updateSignupButtonState;
+    </script>
+</body>
+</html>
